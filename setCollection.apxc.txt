@@ -1,0 +1,34 @@
+public class CollectionSet {
+    public static void setcollection()
+    {
+        // create a new set with 3 elements
+Set<String> s = new Set<String>{'Jon', 'Quinton', 'Reid'};
+// adds an element IF not already present
+s.add('Sandeep');
+// adds an element IF not already present
+s.add('Sandeep'); 
+// return the number of elements
+System.debug('=== number of elements: ' + s.size()); 
+// removes the element if present
+s.remove('Reid'); 
+ // return the number of elements
+System.debug('=== number of elements: ' + s.size());
+// returns true if the set contains the specified element
+System.debug('=== set contains element Jon: ' + s.contains('Jon')); 
+// output all elements in the set
+for (String str : s)
+{ 
+    // outputs an element
+  System.debug('=== element : ' + str); 
+}
+// makes a duplicate of the set
+Set<String> s1 = s.clone(); 
+// displays the contents of the set
+System.debug('=== contents of s1: ' + s1); 
+// removes all elements
+s1.clear(); 
+// returns true if the set has zero elements
+System.debug('=== is the s1 set empty? ' + s1.isEmpty());
+            }
+
+}

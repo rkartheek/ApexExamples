@@ -1,0 +1,28 @@
+public class mapcollection {
+
+    public static void mapcol() 
+    {
+Map<Integer, String> m = new Map<Integer, String>{5 => 'Jon', 6 => 'Quinton', 1 => 'Reid',5 => 'chandra'};
+        //Map m = new Map{5 => 'Jon', 6 => 'Quinton', 1 => 'Reid'};
+// displays all keys
+System.debug('=== all keys in the map: ' + m.keySet()); 
+// displays all values
+System.debug('=== all values in the map (as a List): ' + m.values()); 
+// does the key exist?
+System.debug('=== does key 6 exist?: ' + m.containsKey(6)); 
+// fetches the value for the key
+System.debug('=== value for key 6: ' + m.get(6)); 
+// adds a new key/value pair
+m.put(3,'Dave'); 
+// returns the number of elements
+System.debug('=== size after inserting Dave: ' + m.size());
+// removes an element
+m.remove(5); 
+System.debug('=== size after removing Jon: ' + m.size());
+
+// removes all elements
+m.clear(); 
+// returns true if zero elements
+System.debug('=== is m empty? ' + m.isEmpty()); 
+    }
+}

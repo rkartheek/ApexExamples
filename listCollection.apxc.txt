@@ -1,0 +1,36 @@
+public class collectionlist {
+    
+    public static void listcol()
+    {
+        List<String> s = new List<String>{'Jon6', 'Quinton7', 'Reid8'};
+            // adds an element
+            s.add('Sandeep'); 
+        // adds an element
+        s.add('Sandeep'); 
+        // return the number of elements
+        System.debug('=== number of elements: ' + s.size());
+        // displays the first element 
+        System.debug('=== first element: ' + s.get(0)); 
+        // removes the first element
+        s.remove(0); 
+        // return the number of elements
+        System.debug('=== number of elements: ' + s.size()); 
+        // makes a duplicate of the set
+        List<String> s1 = s.clone(); 
+        // displays the contents of the set
+        System.debug('=== contents of s1: ' + s1);
+        
+        // replace the last instance of 'Sandeep' with 'Pat'
+        s1.set(3,'Pat'); // displays the contents of the set
+        System.debug('=== contents of s1: ' + s1); 
+        // sorts the items in ascending (primitave only)
+        s1.sort(); 
+        // displays the contents of the set
+        System.debug('=== sorted contents of s1: ' + s1); 
+        // removes all elements
+        s.clear();
+        // returns true if the set has zero elements
+        System.debug('=== is the list empty? ' + s.isEmpty() + s1); 
+    }
+    
+}
