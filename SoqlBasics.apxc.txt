@@ -1,0 +1,126 @@
+public class soqlbasics {
+    public static void samplesoql()
+    {
+        List<contact> cons=[SELECT Id, Name FROM Contact];
+        
+        /*where clause*/
+       List<Account> acc=[SELECT Id, Name FROM Account WHERE IsDeleted= false];
+        
+        /*Using Operators*/
+        List<contact> accwithoutcontacts=[SELECT Id, Name FROM Contact WHERE AccountId = null];
+        
+        /*Using And Or with where clause*/
+        
+        /*SELECT Id, Name, Sex__c, BirthDate, Likes_Ice_Cream__c
+    	FROM Contact 
+    	WHERE Phone != null
+        AND DoNotCall = false
+            
+        SELECT Id, Name, Sex__c, BirthDate, Likes_Ice_Cream__c 
+    	FROM Contact
+    	WHERE ( Phone != null AND DoNotCall = false )
+        OR Email != null
+		
+		Using Text,PickLIst or Id values
+
+		SELECT Id, Name, Phone, Birthdate, Likes_Ice_Cream__c
+    	FROM Contact    
+    	WHERE Phone != null
+        AND Sex__c = 'Female'
+        AND RecordTypeId != '0120o000001CjuuAAC'
+
+		Using NUmbers:
+
+		SELECT Id, Name, Phone, Birthdate, Likes_Ice_Cream__c
+    	FROM Contact    
+    	WHERE Phone != null
+        AND Sex__c = 'Female'
+        AND Weight__c > 100
+
+		Using Dates:
+		
+		SELECT Id, Name, Phone, Birthdate, Likes_Ice_Cream__c
+    	FROM Contact    
+    	WHERE Phone != null
+        AND BirthDate = TODAY
+
+		Using WildCards:-
+
+		SELECT Id, Name, Phone, Birthdate, Likes_Ice_Cream__c
+    	FROM Contact    
+    	WHERE Sex__c = 'Female'
+        AND Phone LIKE '%(650)%'
+		
+		Sorting the results:
+
+		SELECT Id, Name, Phone, Birthdate, Likes_Ice_Cream__c
+    	FROM Contact    
+    	WHERE Phone != null
+    	ORDER BY Name ASC
+
+		Limiting your results:
+		
+		SELECT Id, Name, Phone, Birthdate, Likes_Ice_Cream__c
+    	FROM Contact    
+    	WHERE Phone != null
+    	LIMIT 5
+
+		All Together:-
+
+		SELECT Id, Name, Sex__c, BirthDate, Likes_Ice_Cream__c 
+    FROM Contact
+    WHERE
+        BirthDate = TODAY
+        AND Sex__c = 'Female'
+        AND RecordTypeId != '012i0000000ES3H'
+        AND Weight__c > 100
+        AND (
+            ( Phone != null
+              AND DoNotCall = false
+              AND Phone LIKE '%(650)%' )
+            OR
+            Email != null
+        )
+    ORDER BY Name ASC 
+    LIMIT 5
+*/
+        
+    }
+    /*from child to parent*/
+    public static void upwardtraversal()
+    {
+        /*Upwards traversal is used whenever there’s a lookup or master-detail field from the base object. This is sometimes referred to as going from the child to the parent.*/
+        /*
+         SELECT Id, Account.Name, Account.Industry, Account.Website
+    	FROM Contact
+    	WHERE Account.NumberOfEmployees >= 200
+		
+		SELECT Account.Owner.Profile.CreatedBy.Name FROM Contact
+		
+		SELECT Id, Opportunities__r.name FROM Account
+		
+		for the above Here we’re traversing a custom lookup field Best_Friend__c on the contact object. Notice how the “__c” changes to a “__r” when traversing that field!
+         */
+        
+    }
+    /*from parent to child*/
+    public static void downwardstraversal()
+    {
+    	/*SELECT Id, Name, Industry, AnnualRevenue,
+    ( SELECT Name, Email, BirthDate FROM Contacts )
+    FROM Account
+	
+	The nested query is treated like another field. That’s why there is a comma after the AnnualRevenue field.
+We use the plural version “Contacts” in the nested SOQL query. If you need to find the keyword for a custom relationship, find the lookup or master-detail field and look here:
+tip:-If you’re using custom relationships, add “__r” to the keyword: “Contacts__r”
+	SELECT Id, Name, Account.Description, CreatedBy.Name,
+   (SELECT Amount FROM Opportunities WHERE Amount > 100),
+   (SELECT Name FROM Best_Friends__r WHERE Phone != null)
+   FROM Contact
+   WHERE Account.Secret_Notes__c LIKE '%Tacos%'
+       AND (Sex__c = 'Male' OR Likes_Ice_Cream__c = true)
+*/
+    
+    }
+    
+}
