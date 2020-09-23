@@ -1,0 +1,44 @@
+global class SomeClass implements Schedulable {
+    global void execute(SchedulableContext ctx) {
+        // awesome code here
+    }
+}
+programmatical way :- UNIX CRON JOBS---> one is through program and the through UI
+
+
+global class RemindOpptyOwners implements Schedulable {
+    global void execute(SchedulableContext ctx) {
+        List<Opportunity> opptys = [SELECT Id, Name, OwnerId, CloseDate 
+            FROM Opportunity 
+            WHERE IsClosed = False AND 
+            CloseDate < TODAY];
+        // Create a task for each opportunity in the list
+        system.debug(opptys);
+        
+    }
+    
+}
+
+
+RemindOpptyOwners reminder = new RemindOpptyOwners();
+// Seconds Minutes Hours Day_of_month Month Day_of_week optional_year
+String sch = '20 30 8 10 2 ?';
+String jobID = System.schedule('Remind Opp Owners', sch, reminder);
+
+
+queued---> enqueue ---> execute--
+
+
+batch
+Schedulable
+queueable---> chaining of jobs---> 
+
+firstjob f=new firstjob();
+f.execute();
+seconjob s=new secondjob();
+s.execute();
+
+future methods
+
+
+You can only have 100 scheduled Apex jobs at one time and there are maximum number of scheduled Apex executions per a 24-hour period. See Execution Governors and Limits in the Resources section for details.
